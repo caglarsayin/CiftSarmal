@@ -19,10 +19,6 @@ from google.appengine.api import users
 
 class MainHandler(webapp2.RequestHandler):
 	def get(self):
-		self.response.out.write('Hello world!')
-
-class test(webapp2.RequestHandler):
-	def get(self):
 		file="static/listing.html"
 		listing=open(file).read()
 		self.response.out.write(listing)
@@ -36,16 +32,16 @@ class postit(webapp2.RequestHandler):
 			self.response.out.write(posting)
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
-
+			
 app = webapp2.WSGIApplication(
 	[
 	('/', MainHandler),
-	('/test', test),
 	('/postit',postit)
 	],debug=True)
 
 def main():
 	app.run(app)
+	
 
 if __name__ == '__main__':
 	main()
