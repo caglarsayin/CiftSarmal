@@ -49,6 +49,12 @@ class MainHandler(webapp2.RequestHandler):
 		listing=open(filed).read()
 		self.response.out.write(listing)
 
+class jinja(webapp2.RequestHandler):
+	def get(self):
+		template = jinja_environment.get_template('static/listing_jinja.html')
+		articles = Article.all()
+		self.response.out.write(template.render({'articles': articles}))
+
 class postIt(webapp2.RequestHandler):
 	def get(self):
 		user = users.get_current_user()
@@ -87,6 +93,7 @@ class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
 app = webapp2.WSGIApplication(
 	[
 	('/', MainHandler),
+	('/jinja', jinja),
 	('/posting', posting),
 	('/postit',postIt),
 	('/serve/([^/]+)?', ServeHandler)
