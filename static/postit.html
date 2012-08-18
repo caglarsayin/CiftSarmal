@@ -20,49 +20,42 @@
 </head>
 <body>
 <div class="container">
-	<div class="row">
-		<div class="span6">
-			<h2>Header resmini ekleyiniz</h2>
-			<div class="fileupload fileupload-new" data-provides="fileupload">
-				<div class="fileupload-new thumbnail" style="width: 144px; height: 81px;">
-					<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image">
+			<form action="{{postpage}}" class="well form-horizontal" method="post" enctype="multipart/form-data">
+				<label>Header resmini ekleyiniz...</label>
+				<div class="fileupload fileupload-new" data-provides="fileupload">
+					<div class="fileupload-new thumbnail" style="width: 144px; height: 81px;">
+						<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image">
+					</div>
+					<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 144px; max-height: 81px; line-height: 20px;">
+					</div>
+					<div>
+						<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input name="img" type="file"></span>
+						<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+					</div>
 				</div>
-				<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 144px; max-height: 81px; line-height: 20px;">
-				</div>
-				<div>
-					<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file"></span>
+				<label>Baslik<br /></label>
+				<input name="baslik" type="text" class="span3" placeholder="Baslik...">
+				<label>Buraya guzelce ceviriyi giriniz...</label>
+				<textarea id="editor1" name="editor"></textarea>
+				<script type="text/javascript">
+					CKEDITOR.replace( 'editor1',{contentsCss : 'assets/output_xhtml.css',coreStyles_bold	: { element : 'span', attributes : {'class': 'Bold'} },coreStyles_italic : { element : 'span', attributes : {'class': 'Italic'} },fullPage : false} );
+				</script>
+				<label>Ses kaydini ekleyebilirsiniz</label>
+				<div class="fileupload fileupload-new" data-provides="fileupload">
+					<div class="fileupload-preview uneditable-input">
+					</div>
+					<span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input name="audio" type="file"/></span>
 					<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
 				</div>
-			</div>
-		</div>
-		<div class="span12">
-			<form method="post">
-				<h2>Buraya guzelce ceviriyi giriniz...</h2>
-				<textarea id="editor1" name="editor1"></textarea>
-				<script type="text/javascript">
-				CKEDITOR.replace( 'editor1',
-	{
-		contentsCss : 'assets/output_xhtml.css',
-		coreStyles_bold	: { element : 'span', attributes : {'class': 'Bold'} },
-		coreStyles_italic : { element : 'span', attributes : {'class': 'Italic'} },
-		fullPage : false
-	} );
-			</script>
-				<p>
-				</p>
+				<input name="cate" type="text" class="span3" placeholder="Kategori...">
+				<label>Orjinal link'i girin...</label>
+				<input name="link" type="text" class="span3" placeholder="Link...">
+				<label>Tags link'i girin...</label>
+				<input name="tags" type="text" class="span3" placeholder="Tags...">
+				<label>Ilgili ginleri link'i girin...</label>
+				<input name="rlinks" type="" class="span3" placeholder="Ilgili Linkler...">
+				<input type="submit" class="btn btn-large offset6" value="Gonder gitsin..."/>
 			</form>
-		</div>
-		<div class="span6">
-			<h3 style="color:red;">Ses kaydini ekleyebilirsiniz</h3>
-			<div class="fileupload fileupload-new" data-provides="fileupload">
-				<div class="fileupload-preview uneditable-input">
-				</div>
-				<span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file"/></span>
-				<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-			</div>
-		</div>
-		<div class="span3 offset3"><input type="submit" class="btn btn-large" value="Gonder gitsin..."/></div>
-	</div>
 </div>
 </body>
 </html>
