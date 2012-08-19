@@ -6,7 +6,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#	 http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,11 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# -*- coding: utf-8 -*-
+
 import webapp2
 import datetime
 import jinja2
 import os
 import urllib
+import quopri
 
 from google.appengine.ext import db
 from google.appengine.ext import blobstore
@@ -26,7 +29,7 @@ from google.appengine.ext.webapp import blobstore_handlers
 from google.appengine.api import users
 
 jinja_environment = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+	loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 
 class Article(db.Model):
@@ -34,6 +37,7 @@ class Article(db.Model):
 	text = db.TextProperty(required=True,indexed=False)
 	imgKey = blobstore.BlobReferenceProperty(required=True,indexed=False)
 	additionDate = db.DateProperty(required=True,indexed=True)
+	summary = db.TextProperty(required=False,indexed=False)
 	editor = db.UserProperty(required=True,indexed=True)
 	tags = db.StringListProperty(indexed=True)
 	categ = db.StringProperty(choices=['dbilimleri', 'teknoloji', 'psikoloji', 'ekonomi','saglik','ekoloji','tbilimleri'],required=True,indexed=True )
@@ -71,7 +75,7 @@ class posting(blobstore_handlers.BlobstoreUploadHandler):
 		postedaudio = self.get_uploads('audio')
 		imgBlob = postedimg[0]
 		audioBlob = postedaudio[0]
-		dataModel = Article(title = self.request.get('baslik'),
+		dataModel = Article(title = unicode(self.request.get('baslik')),
 						text = db.Text(self.request.get('editor')),
 						orjinalLink = db.Link(self.request.get('link')),
 						tags = [self.request.get('tags'),],
@@ -82,13 +86,13 @@ class posting(blobstore_handlers.BlobstoreUploadHandler):
 						editor = users.get_current_user()
 						)
 		dataModel.put()
-		self.redirect('/')
 		
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
 	def get(self, resource):
 		resource = str(urllib.unquote(resource))
  		blob_info = blobstore.BlobInfo.get(resource)
  		self.send_blob(blob_info)		
+
 
 app = webapp2.WSGIApplication(
 	[
