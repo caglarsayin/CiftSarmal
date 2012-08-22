@@ -35,25 +35,40 @@
 				</div>
 				<label>Baslik<br /></label>
 				<input name="baslik" type="text" class="span3" placeholder="Baslik...">
-				<label>Buraya guzelce ceviriyi giriniz...</label>
+                <label>Özeti giriniz</label>
+                <textarea name="summary" rows="3" class="span11"></textarea>
+				<label for="editor1">Buraya guzelce ceviriyi giriniz...</label>
 				<textarea id="editor1" name="editor"></textarea>
 				<script type="text/javascript">
 					CKEDITOR.replace( 'editor1',{contentsCss : 'assets/output_xhtml.css',coreStyles_bold	: { element : 'span', attributes : {'class': 'Bold'} },coreStyles_italic : { element : 'span', attributes : {'class': 'Italic'} },fullPage : false} );
 				</script>
-				<label>Ses kaydini ekleyebilirsiniz</label>
+
+                <label for="audio">Ses kaydini ekleyebilirsiniz</label>
 				<div class="fileupload fileupload-new" data-provides="fileupload">
 					<div class="fileupload-preview uneditable-input">
 					</div>
-					<span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input name="audio" type="file"/></span>
+					<span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input id="audio"  name="audio" type="file"/></span>
 					<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
 				</div>
-				<input name="cate" type="text" class="span3" placeholder="Kategori...">
-				<label>Orjinal link'i girin...</label>
-				<input name="link" type="text" class="span3" placeholder="Link...">
-				<label>Tags link'i girin...</label>
-				<input name="tags" type="text" class="span3" placeholder="Tags...">
-				<label>Ilgili ginleri link'i girin...</label>
-				<input name="rlinks" type="" class="span3" placeholder="Ilgili Linkler...">
+
+                <select name="cate" multiple="multiple">
+                    <option>dbilimleri</option>
+                    <option>teknoloji</option>
+                    <option>psikoloji</option>
+                    <option>ekonomi</option>
+                    <option>saglik</option>
+                    <option>ekoloji</option>
+                    <option>tbilimleri</option>
+                </select>
+
+                <label for="link">Orjinal link'i girin...</label>
+                <input id="link" name="link" type="text" class="span3" placeholder="Link...">
+
+                <label for="tags">Tags link'i girin...</label>
+                <input id="tags" name="tags" type="text" class="span3" placeholder="Tags...">
+
+                <label for="rlinks">Ilgili ginleri link'i girin...</label>
+                <input id="rlinks"  name="rlinks" type="text" class="span3" placeholder="Ilgili Linkler...">
 				<input type="submit" class="btn btn-large offset6" value="Gonder gitsin..."/>
 			</form>
 </div>

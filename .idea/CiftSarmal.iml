@@ -3,15 +3,17 @@
   <component name="FacetManager">
     <facet type="google-appengine-python" name="Google App Engine (Python)">
       <configuration>
-        <option name="rootFolder" value="C:\Users\caglar\Documents\Aptana Studio 3 Workspace\CiftSarmal" />
-        <option name="sdkFolder" value="C:\Program Files (x86)\Google\google_appengine" />
+        <option name="rootFolder" value="$MODULE_DIR$" />
+        <option name="sdkFolder" value="/usr/share/google_appengine" />
         <option name="templatesFolder" value="" />
+        <option name="email" value="caglar.mobil@gmail.com" />
+        <option name="gp" value="dffedf9edf9cdfc0dfccdfe0dfefdfeedf93dfc1dfcd" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 2.7.3 (/usr/bin/python2.7)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Google App Engine SDK" level="project" />
   </component>

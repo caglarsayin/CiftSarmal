@@ -21,7 +21,6 @@ import datetime
 import jinja2
 import os
 import urllib
-import quopri
 
 from google.appengine.ext import db
 from google.appengine.ext import blobstore
@@ -37,7 +36,7 @@ class Article(db.Model):
 	text = db.TextProperty(required=True,indexed=False)
 	imgKey = blobstore.BlobReferenceProperty(required=True,indexed=False)
 	additionDate = db.DateProperty(required=True,indexed=True)
-	summary = db.TextProperty(required=False,indexed=False)
+	summary = db.TextProperty(required=True,indexed=False)
 	editor = db.UserProperty(required=True,indexed=True)
 	tags = db.StringListProperty(indexed=True)
 	categ = db.StringProperty(choices=['dbilimleri', 'teknoloji', 'psikoloji', 'ekonomi','saglik','ekoloji','tbilimleri'],required=True,indexed=True )
@@ -45,8 +44,8 @@ class Article(db.Model):
 	orjinalLink = db.LinkProperty(indexed=False)
 	relatedLinks = db.ListProperty(db.Link,indexed=False)
 	videoLings = db.ListProperty(db.Link,indexed=False)
-		
-		
+
+
 class MainHandler(webapp2.RequestHandler):
 	def get(self):
 		filed="static/listing.html"
@@ -68,7 +67,7 @@ class postIt(webapp2.RequestHandler):
 			self.response.out.write(template.render({'postpage':postpage}))
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
-			
+
 class posting(blobstore_handlers.BlobstoreUploadHandler):
 	def post(self):
 		postedimg = self.get_uploads('img')  # 'file' is file upload field in the form
@@ -81,23 +80,27 @@ class posting(blobstore_handlers.BlobstoreUploadHandler):
 						tags = [self.request.get('tags'),],
 						rlinks = self.request.get('rlinks'),
 						categ = self.request.get('cate'),
+						summary = self.request.get('summary'),
 						imgKey = imgBlob.key(),
 						additionDate = datetime.datetime.now().date(),
 						editor = users.get_current_user()
 						)
 		dataModel.put()
-		
+
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
 	def get(self, resource):
+		"""
+		Blob store middle_ware
+		"""
 		resource = str(urllib.unquote(resource))
- 		blob_info = blobstore.BlobInfo.get(resource)
- 		self.send_blob(blob_info)		
+		blob_info = blobstore.BlobInfo.get(resource)
+		self.send_blob(blob_info)
 
 
 app = webapp2.WSGIApplication(
 	[
-	('/', MainHandler),
-	('/jinja', jinja),
+	('/orjinal', MainHandler),
+	('/', jinja),
 	('/posting', posting),
 	('/postit',postIt),
 	('/serve/([^/]+)?', ServeHandler)
@@ -105,7 +108,7 @@ app = webapp2.WSGIApplication(
 
 def main():
 	app.run(app)
-	
+
 
 if __name__ == '__main__':
 	main()
