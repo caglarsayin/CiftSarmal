@@ -5,6 +5,8 @@
 *.pydevproject
 .project
 .metadata
+.idea
+.idea/
 bin/
 tmp/
 *.tmp
@@ -27,7 +29,7 @@ local.properties
 
 # PDT-specific
 .buildpath
-
+*.xml
 
 #################
 ## Visual Studio
@@ -132,3 +134,4 @@ Desktop.ini
 #############
 
 .DS_Store
+*.pyc
