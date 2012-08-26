@@ -13,10 +13,10 @@
 <meta name="keywords" content="Dünyanın çeşitli köşelerinden bilim ve teknoloji haberleri ve etkinlikleri, yeni buluşlar, keşifler, projeler...">
 <meta name="generator" content="Topcat2">
 <meta name="viewport" content="width = 1174">
-<link rel="stylesheet" type="text/css" href="./css/main.css">
-<link rel="stylesheet" type="text/css" href="./css/3pt_ads.css">
-<link rel="stylesheet" type="text/css" href="./css/all.css">
-<script type="text/javascript" src="./js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+<link rel="stylesheet" type="text/css" href="/css/3pt_ads.css">
+<link rel="stylesheet" type="text/css" href="/css/all.css">
+<script type="text/javascript" src="/js/jquery.js"></script>
  <script type="text/javascript">
  var addthis_config = {"5020a0da0730e6d5":true};
  </script> <script type="text/javascript"
@@ -33,14 +33,14 @@
 				<input type="text" id="CSNavQuery" name="query" value="Ara..." size="20" maxlength="30">
 				<input type="submit" id="CSNavSubmit" value=" Burada Ara... " title="Burada Ara...">
 			</form>
-			<ul id="CSNavMenu">				<li id="CSNavHome"><a href="http://www.abc.net.au/" title="ABC Home"><img src="http://www.abc.net.au/res/abc/logos/nav_logo.png" alt="ABC Home" width="61" height="16"></a></li>
-				
+			<ul id="CSNavMenu">
+                <li id="CSNavHome"><a href="http://www.abc.net.au/" title="ABC Home"><img src="http://www.abc.net.au/res/abc/logos/nav_logo.png" alt="ABC Home" width="61" height="16"></a></li>
 				<li id="CSNavNews"><a href="/?cat=1">Doga Bilimleri</a></li>
 				<li id="CSNavSport"><a href="/?cat=2">Teknoloji</a></li>
 				<li id="CSNavLocal"><a href="/?cat=3">Psikoloji</a></li>
 				<li id="CSNavKids"><a href="/?cat=4">Ekonomi</a></li>
 				<li id="CSNavScience"><a href="/?cat=5">Saglik</a></li>
-				<li id="CSNavScience"><a href="/?cat=6">Ekoloji</a></li>
+				<li id="CSNavScience2"><a href="/?cat=6">Ekoloji</a></li>
 				<li id="CSNavTopics"><a href="/?cat=7">Toplum Bilimleri</a></li>
 				<li id="CSNavHelp"><a href="/podcast">Podcast</a></li>
 			</ul>
@@ -76,7 +76,7 @@
 										<ul>
 											{% for article in articles %}
 											<li class="ts-144x81 first teaser">
-											<h2 class="link title"><a href="/article/{{ article.title }}">{{ article.title }}<img alt="" width="144" height="81" src="/serve/{{ article.imgKey.key() }}"></a></h2>
+											<h2 class="link title"><a href="/article/{{ article.urlAdress}}">{{ article.title }}<img alt="" width="144" height="81" src="/serve/{{ article.imgKey.key() }}"></a></h2>
 											<div class="body">
 												<p class="summary">
 													{{ article.summary }}
@@ -91,29 +91,18 @@
 										<div class="nav">
 											<ul>
 												<li class="prev">
-												önceki </li>
-												<li class="current"><a href="http://www.bbc.co.uk/turkce/konular/science_and_technology/?page=001">1</a>
-												</li>
-												<li><a href="http://www.bbc.co.uk/turkce/konular/science_and_technology/?page=002">2</a>
-												</li>
-												<li><a href="http://www.bbc.co.uk/turkce/konular/science_and_technology/?page=003">3</a>
-												</li>
-												<li><a href="http://www.bbc.co.uk/turkce/konular/science_and_technology/?page=004">4</a>
-												</li>
-												<li><a href="http://www.bbc.co.uk/turkce/konular/science_and_technology/?page=005">5</a>
-												</li>
-												<li><a href="http://www.bbc.co.uk/turkce/konular/science_and_technology/?page=006">6</a>
-												</li>
-												<li><a href="http://www.bbc.co.uk/turkce/konular/science_and_technology/?page=007">7</a>
-												</li>
-												<li><a href="http://www.bbc.co.uk/turkce/konular/science_and_technology/?page=008">8</a>
-												</li>
-												<li><a href="http://www.bbc.co.uk/turkce/konular/science_and_technology/?page=009">9</a>
-												</li>
-												<li><a href="http://www.bbc.co.uk/turkce/konular/science_and_technology/?page=010">10</a>
-												</li>
-												<li class="next">
-												<a href="http://www.bbc.co.uk/turkce/konular/science_and_technology/?page=002">
+												<a {% if pageno > 1 %} href={{ pageno-1 }}{% endif %}> önceki</a>
+                                                </li>
+                                                {% for number in range((pageno//10)*10+1,(pageno//10)*10+11) %}
+												    {% if pageno == number %}
+                                                        <li class="current"><a href="/list/{{ pageno }}">{{ pageno }}</a></li>
+                                                    {% else %}
+                                                        <li><a href="/list/{{ number}}">{{ number }}</a></li>
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                                <li class="next">
+                                                 <a href={{ pageno+1}}>
 												sonraki </a>
 												</li>
 											</ul>
@@ -153,7 +142,7 @@
 									<div class="content">
 										<ul>
 											<li class="ts-304x171 first teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/ozeldosyalar/2012/07/120703_syria_russia.shtml">Rusya'nın Suriye politikası<img alt="" width="304" height="171" src="./img/120211150618_syria_assad_russia_reuters.jpg"></a></h3>
+											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/ozeldosyalar/2012/07/120703_syria_russia.shtml">Rusya'nın Suriye politikası<img alt="" width="304" height="171" src="/img/120211150618_syria_assad_russia_reuters.jpg"></a></h3>
 											<div class="body">
 												<p class="summary">
 													Suriye krizi derinleşirlken gözler bölgede askeri üssü bulunan Rusya’nın ne yapacağına çevrildi.
@@ -161,7 +150,7 @@
 											</div>
 											</li>
 											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/euro2012.shtml">EURO 2012 ÖZEL<img alt="" width="112" height="63" src="./img/120603120628_euro_2012_banner_112x63_bbc_nocredit.jpg"></a></h3>
+											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/euro2012.shtml">EURO 2012 ÖZEL<img alt="" width="112" height="63" src="/img/120603120628_euro_2012_banner_112x63_bbc_nocredit.jpg"></a></h3>
 											<div class="body">
 												<p class="summary">
 													BBC Türkçe'nin Avrupa Futbol Şampiyonası için hazırladığı özel dosyalar için tıklayın.
@@ -169,7 +158,7 @@
 											</div>
 											</li>
 											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/2012/06/120619_turkey_prisons.shtml">Türkiye'de cezaevi isyanları<img alt="" width="112" height="63" src="./img/120619183526_turkey_prison_112x63_bbc_nocredit.jpg"></a></h3>
+											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/2012/06/120619_turkey_prisons.shtml">Türkiye'de cezaevi isyanları<img alt="" width="112" height="63" src="/img/120619183526_turkey_prison_112x63_bbc_nocredit.jpg"></a></h3>
 											<div class="body">
 												<p class="summary">
 													Konuyla ilgili araştırma ve inceleme yapan uzmanlarla görüştük.
@@ -177,7 +166,7 @@
 											</div>
 											</li>
 											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/2012/06/120619_algeria_france.shtml">Geçmişle yüzleşen Fransa<img alt="" width="112" height="63" src="./img/120619113403_algeria_112x63_bbc_nocredit.jpg"></a></h3>
+											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/2012/06/120619_algeria_france.shtml">Geçmişle yüzleşen Fransa<img alt="" width="112" height="63" src="/img/120619113403_algeria_112x63_bbc_nocredit.jpg"></a></h3>
 											<div class="body">
 												<p class="summary">
 													Paris’teki Kara Kuvvetleri Müzesi'nde Cezayir'in sömürge yılları mercek altında.
@@ -185,7 +174,7 @@
 											</div>
 											</li>
 											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/2012/06/120619_environment_ratings.shtml">Türkiye'nin çevre notu: BBB-<img alt="" width="112" height="63" src="./img/120409152325_zermatt_112.jpg"></a></h3>
+											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/2012/06/120619_environment_ratings.shtml">Türkiye'nin çevre notu: BBB-<img alt="" width="112" height="63" src="/img/120409152325_zermatt_112.jpg"></a></h3>
 											<div class="body">
 												<p class="summary">
 													Kredi derecelendirme kuruluşlarının örnek alındığı raporun ayrıntıları.
@@ -193,7 +182,7 @@
 											</div>
 											</li>
 											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/ozeldosyalar/2012/06/120619_syria_chemical.shtml">Suriye'nin kimyasal silahları<img alt="" width="112" height="63" src="./img/120120135452_chemical_expert_112x63_bbc_nocredit.jpg"></a></h3>
+											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/ozeldosyalar/2012/06/120619_syria_chemical.shtml">Suriye'nin kimyasal silahları<img alt="" width="112" height="63" src="/img/120120135452_chemical_expert_112x63_bbc_nocredit.jpg"></a></h3>
 											<div class="body">
 												<p class="summary">
 													BBC savunma muhabiri Jonathan Marcus, Suriye'nin mühimmat güvenliğini sorguluyor.
@@ -201,7 +190,7 @@
 											</div>
 											</li>
 											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/2012/06/120618_greece_mason.shtml">Avrupa nefes aldı<img alt="" width="112" height="63" src="./img/120523063408_euro_112x63_reuters_nocredit.jpg"></a></h3>
+											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/2012/06/120618_greece_mason.shtml">Avrupa nefes aldı<img alt="" width="112" height="63" src="/img/120523063408_euro_112x63_reuters_nocredit.jpg"></a></h3>
 											<div class="body">
 												<p class="summary">
 													BBC Ekonomi editörü Paul Mason'a göre Yunanistan seçimleri Avrupa'ya zaman kazandırdı.
@@ -209,7 +198,7 @@
 											</div>
 											</li>
 											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/ozeldosyalar/londra_2012.shtml">2012 Londra Olimpiyat Oyunları<img alt="2012 Londra Olimpiyat Oyunları" width="112" height="63" src="./img/101011190943_olympics_mechandise_112x63.jpg"></a></h3>
+											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/ozeldosyalar/londra_2012.shtml">2012 Londra Olimpiyat Oyunları<img alt="2012 Londra Olimpiyat Oyunları" width="112" height="63" src="/img/101011190943_olympics_mechandise_112x63.jpg"></a></h3>
 											<div class="body">
 												<p class="summary">
 													Oyunlara üçüncü kez ev sahipliği edecek olan Londra, yüzden fazla ülkeyi ağırlamaya hazırlanıyor

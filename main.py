@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Google Inc.
 #
@@ -14,8 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# -*- coding: utf-8 -*-
-
+from string import replace
+from google.appengine.api import images
 import webapp2
 import datetime
 import jinja2
@@ -44,19 +44,22 @@ class Article(db.Model):
     orjinalLink = db.LinkProperty(indexed=False)
     relatedLinks = db.ListProperty(db.Link,indexed=False)
     videoLings = db.ListProperty(db.Link,indexed=False)
-
+    urlAdress = db.StringProperty(indexed=True)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        filed="static/listing.html"
-        listing=open(filed).read()
-        self.response.out.write(listing)
+        self.redirect("/list")
 
 class jinja(webapp2.RequestHandler):
-    def get(self):
+    def get(self,pageno,page):
+        if pageno:
+            pageno=int(pageno[1:])
+        else:
+            pageno=1
         template = jinja_environment.get_template('static/listing_jinja.html')
-        articles = Article.all()
-        self.response.out.write(template.render({'articles': articles}))
+        q = db.GqlQuery("SELECT * FROM Article "+"ORDER BY additionDate DESC")
+        articles=q.fetch(pageno*10,offset=pageno*10-10)
+        self.response.out.write(template.render({'articles': articles,'pageno':pageno}))
 
 class postIt(webapp2.RequestHandler):
     def get(self):
@@ -76,7 +79,7 @@ class posting(blobstore_handlers.BlobstoreUploadHandler):
             if self.get_uploads("audio"):
                 postedaudio = self.get_uploads('audio')
                 audioBlob = postedaudio[0]
-            dataModel = Article(title = unicode(self.request.get('baslik')),
+            dataModel = Article(title = self.request.get('baslik'),
                             text = db.Text(self.request.get('editor')),
                             orjinalLink = db.Link(self.request.get('link')),
                             tags = [self.request.get('tags'),],
@@ -85,28 +88,86 @@ class posting(blobstore_handlers.BlobstoreUploadHandler):
                             summary = self.request.get('summary'),
                             imgKey = imgBlob.key(),
                             additionDate = datetime.datetime.now().date(),
-                            editor = users.get_current_user())
+                            editor = users.get_current_user(),
+                            urlAdress = self.normalizeIt(self.request.get('baslik')))
             dataModel.put()
         except:
+#            raise
             self.redirect("/postit")
 
-class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
-    def get(self, resource):
-        """
-        Blob store middle_ware
-        """
-        resource = str(urllib.unquote(resource))
-        blob_info = blobstore.BlobInfo.get(resource)
-        self.send_blob(blob_info)
+    def normalizeIt(self,s):
+        valid_chars='-_ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+        reps = {'ç':'c', 'ş':'s', 'ü':'u', 'ğ':'g', 'ı':'i', 'ö':'o','Ç':'C', 'Ş':'S', 'Ü':'U', 'Ğ':'G', 'İ':'I', 'Ö':'O', ' ':'-'}
+        s=c=s.encode("utf8")
+        for i, j in reps.iteritems():
+            s = s.replace(i, j)
+        for i in s:
+            if not i in valid_chars:
+                s=s.replace(i,"")
+        return s
+
+
+class article(webapp2.RequestHandler):
+    def get(self,slub):
+        template = jinja_environment.get_template('static/page.html')
+        q = db.GqlQuery("SELECT * FROM Article  where urlAdress= :1",slub)
+        article = q.fetch(1)[0]
+        self.response.out.write(template.render({'article': article}))
+
+
+class ServeHandler(webapp2.RequestHandler):
+    def get(self,blob_key):
+        if blob_key:
+            blob_info = blobstore.get(blob_key)
+
+            if blob_info:
+                img = images.Image(blob_key=blob_key)
+                img.resize(width=144, height=81)
+                img.im_feeling_lucky()
+                thumbnail = img.execute_transforms(output_encoding=images.JPEG)
+
+                self.response.headers['Content-Type'] = 'image/jpeg'
+                self.response.out.write(thumbnail)
+                return
+
+        # Either "blob_key" wasn't provided, or there was no value with that ID
+        # in the Blobstore.
+        self.error(404)
+
+
+class debugg(webapp2.RequestHandler):
+    def get(self):
+        q = db.GqlQuery("SELECT * FROM Article " +"WHERE urlAdress = :1","""Testing---caglar---csi""")
+        q=q.fetch(1)
+        for i in  q:
+            self.response.out.write(i.additionDate)
+
+    def get_old(self):
+        s=u"çaş ş'ğ'aü"
+        s=self.normalizeIt(s)
+        test=self.uri_for('article', _full=True,slub=s)
+        self.response.out.write(test)
+
+    def normalizeIt(self,s):
+        valid_chars='-_ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+        reps = {'ç':'c', 'ş':'s', 'ü':'u', 'ğ':'g', 'ı':'i', 'ö':'o','Ç':'C', 'Ş':'S', 'Ü':'U', 'Ğ':'G', 'İ':'I', 'Ö':'O', ' ':'_'}
+        s=s.encode("utf8")
+        self.response.out.write(type(s))
+        for i, j in reps.iteritems():
+            s = s.replace(i, j)
+        s="".join([i for i in s if i in valid_chars])
+        return s
 
 
 app = webapp2.WSGIApplication(
     [
-    ('/orjinal', MainHandler),
-    ('/', jinja),
+    ('/', MainHandler),
+    ('/list((/)[0-9]*)?', jinja),
     ('/posting', posting),
     ('/postit',postIt),
-    ('/serve/([^/]+)?', ServeHandler)
+    ('/serve/([^/]+)?', ServeHandler),
+    webapp2.Route('/article/<slub:([^/]+)?>', article,'article'),
+    webapp2.Route('/debug', debugg,"debugg")
     ],debug=True)
 
 def main():
