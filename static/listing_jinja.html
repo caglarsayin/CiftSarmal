@@ -17,35 +17,14 @@
 <link rel="stylesheet" type="text/css" href="/css/3pt_ads.css">
 <link rel="stylesheet" type="text/css" href="/css/all.css">
 <script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/main.js" class="gloaded sync"></script>
  <script type="text/javascript">
  var addthis_config = {"5020a0da0730e6d5":true};
  </script> <script type="text/javascript"
  src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=[5020a0da0730e6d5]"></script>
 </head>
 <body id="www-bbcturkce-com" class="topic-cluster genre-topics ltr">
-<div id="CSNav">
-		<div id="CSNavWrapper">
-			<form id="CSNavSearch" method="get" action="http://search.abc.net.au/search/search.cgi">
-				<input type="hidden" name="form" value="simple">
-				<input type="hidden" name="num_ranks" value="20">
-				<input type="hidden" name="collection" value="abcall">
-				<label for="CSNavQuery">Search:</label>
-				<input type="text" id="CSNavQuery" name="query" value="Ara..." size="20" maxlength="30">
-				<input type="submit" id="CSNavSubmit" value=" Burada Ara... " title="Burada Ara...">
-			</form>
-			<ul id="CSNavMenu">
-                <li id="CSNavHome"><a href="http://www.abc.net.au/" title="ABC Home"><img src="http://www.abc.net.au/res/abc/logos/nav_logo.png" alt="ABC Home" width="61" height="16"></a></li>
-				<li id="CSNavNews"><a href="/?cat=1">Doga Bilimleri</a></li>
-				<li id="CSNavSport"><a href="/?cat=2">Teknoloji</a></li>
-				<li id="CSNavLocal"><a href="/?cat=3">Psikoloji</a></li>
-				<li id="CSNavKids"><a href="/?cat=4">Ekonomi</a></li>
-				<li id="CSNavScience"><a href="/?cat=5">Saglik</a></li>
-				<li id="CSNavScience2"><a href="/?cat=6">Ekoloji</a></li>
-				<li id="CSNavTopics"><a href="/?cat=7">Toplum Bilimleri</a></li>
-				<li id="CSNavHelp"><a href="/podcast">Podcast</a></li>
-			</ul>
-		</div>
-	</div>
+{% include 'static/navbar.html' %}
 <div id="blq-container-outer" class="blq-worldservice-worldwide blq-ltr">
 	<div id="blq-container" class="blq-lang-tr-TR blq-dotcom blq-int-nav">
 		<div id="blq-container-inner" lang="tr-TR">
@@ -137,6 +116,9 @@
 								</div>
 							</div>
 							<div class="g-container">
+                                {% include 'static/list.html' %}
+							</div>
+							<div class="g-container">
 								<div xmlns="http://www.w3.org/1999/xhtml" class="list li-specialfeatures">
 									<h2 class="title">Seçtiklerimiz</h2>
 									<div class="content">
@@ -217,23 +199,7 @@
 	</div>
 </div>
 		<!-- CS footer's place -->
-<div id="CSFooter">
-        <div id="CSFooterWrapper">
-                <a id="CSFooterLogo" href="/"><img src="http://www.abc.net.au/res/abc/logos/footer_logo.png" width="112" height="34" alt="abc.net.au"></a>
-                <ul id="CSFooterLinks">
-                        <li class="CSFooterFirst"><a href="/">CiftSarmal</a></li>
-                        <li><a href="/hakkimizda/">Ciftsarmal Hakkinda</a></li>
-                        <li><a href="/careers/">Bizimle Calisin</a></li>
-                        <li><a href="/services/">Hizmetlerimiz</a></li>
-                        <li><a href="/contact/">Iletisim</a></li>
-                </ul>
-                <ul id="CSFooterLegal">
-                        <li class="CSFooterFirst"><a href="/copyright">&#169; 2012 CiftSarmal</a></li>
-                        <li><a href="/conditions">Kullanim kosullari</a></li>
-                        <li><a href="/privacy">Gizlilik Sozlesmesi</a></li>
-                </ul>
-        </div>
-</div>
+{% include 'static/footer.html' %}
 <!-- the end of the CS footer's place -->
 </body>
 </html>

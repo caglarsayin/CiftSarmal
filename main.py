@@ -98,7 +98,7 @@ class posting(blobstore_handlers.BlobstoreUploadHandler):
     def normalizeIt(self,s):
         valid_chars='-_ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
         reps = {'ç':'c', 'ş':'s', 'ü':'u', 'ğ':'g', 'ı':'i', 'ö':'o','Ç':'C', 'Ş':'S', 'Ü':'U', 'Ğ':'G', 'İ':'I', 'Ö':'O', ' ':'-'}
-        s=c=s.encode("utf8")
+        s=s.encode("utf8")
         for i, j in reps.iteritems():
             s = s.replace(i, j)
         for i in s:
@@ -158,6 +158,43 @@ class debugg(webapp2.RequestHandler):
         s="".join([i for i in s if i in valid_chars])
         return s
 
+class hakkimizda(webapp2.RequestHandler):
+    def get(self):
+        file="static/about/hakkimizda.html"
+        listing=open(file).read().decode('utf8')
+        template = jinja_environment.get_template('static/about.html')
+        self.response.out.write(template.render({'article': listing}))
+
+class calisin(webapp2.RequestHandler):
+    def get(self):
+        file="static/about/calisin.html"
+        listing=open(file).read().decode('utf8')
+        template = jinja_environment.get_template('static/about.html')
+        self.response.out.write(template.render({'article': listing}))
+
+class kosullar(webapp2.RequestHandler):
+    def get(self):
+        file="static/about/kosullar.html"
+        listing=open(file).read().decode('utf8')
+        template = jinja_environment.get_template('static/about.html')
+        self.response.out.write(template.render({'article': listing}))
+
+class gizlilik(webapp2.RequestHandler):
+    def get(self):
+        file="static/about/gizlilik.html"
+        listing=open(file).read().decode('utf8')
+        template = jinja_environment.get_template('static/about.html')
+        self.response.out.write(template.render({'article': listing}))
+
+class iletisim(webapp2.RequestHandler):
+    def get(self):
+        file="static/about/iletisim.html"
+        listing=open(file).read().decode('utf8')
+        template = jinja_environment.get_template('static/about.html')
+        self.response.out.write(template.render({'article': listing}))
+
+
+
 
 app = webapp2.WSGIApplication(
     [
@@ -165,6 +202,11 @@ app = webapp2.WSGIApplication(
     ('/list((/)[0-9]*)?', jinja),
     ('/posting', posting),
     ('/postit',postIt),
+    ('/hakkimizda/',hakkimizda),
+    ('/careers/',calisin),
+    ('/privacy/',gizlilik),
+    ('/conditions/',kosullar),
+    ('/contact/',iletisim),
     ('/serve/([^/]+)?', ServeHandler),
     webapp2.Route('/article/<slub:([^/]+)?>', article,'article'),
     webapp2.Route('/debug', debugg,"debugg")
