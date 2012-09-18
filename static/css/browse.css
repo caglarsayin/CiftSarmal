@@ -1,0 +1,643 @@
+/* ----------- RIGHT column ------------- */
+/* ----------- Search ------------------- */
+#scienceSearch {
+    width:					320px;
+    float:					left;
+}
+#scienceSearch form {
+    text-align:				left;
+    padding:				0px 0 15px 0;
+    margin:					0px 0 10px 0px;
+    border:					1px solid #afb3ba;
+    background:				#f6f6f6;
+}
+#scienceSearch form legend,
+#scienceSearch form legend a {
+    color:					#484848;
+    background:				#f6f6f6;
+    font-weight:			normal;
+}
+#scienceSearch #query {
+    visibility:				visible;
+    display:				inline;
+    margin:					10px 0 0 10px;
+    padding:				7px 0;
+    width:					210px;
+    font-size:				12px;
+    font:                   bold 12px arial;
+    border:					1px solid #acacb4;
+    background:				white url(/img/at.png) no-repeat 0px 0px;
+    background-size: 25px 25px;
+    padding-left:			25px;
+}
+#scienceSearch input {}
+#scienceSearch form p {margin:0; padding:0; font-size:0.92em;}
+#scienceSearch .readMore {
+    float:right; text-align:right;
+    font-style:normal; font-size:0.72em;
+    margin:-2.2em 0 0 0; padding:0;
+}
+/* Turn off News' add story link */
+li a#linkButton {display:none; visibility:hidden;}
+
+/* ----------- Browse ------------- */
+#browse        {
+	width:					320px;
+	float:					left;
+/*	margin:					0 20px;*/
+}
+#browse div {
+	margin:					0 0 10px 0; 
+	padding:				0!important;
+	position:				relative; 
+	text-align:				left;
+}
+#browse div.newsHighlights {
+	border:					1px solid #afb3ba;
+	color:					#3A3C53; 
+	background-color:		#F7F8FC;
+	position:				relative;
+}
+
+#browse div.topNews {
+	background-color:		#dcdfe6; 
+	border:					1px solid #afb3ba; 
+	position:				relative;
+}
+
+#browse div.subsite {
+	background-color:		#f6f6f6; 
+	border:					1px solid #afb3ba; 
+	position:				relative;
+}
+#browse div.primarySubject, 
+#browse div.newsHighlights {
+	border:					1px solid #afb3ba; 
+	position:				relative;
+}
+#browse a:link, #browse a:visited {
+	color:					#393961;
+}
+#browse h3 {
+	font-size:				1.2em; 
+	font-weight:			normal;
+	margin:					0; 
+	padding:				0; 
+	color:					#b2643b;
+}
+#browse .topNews h3 {
+	background-color:		#e4e7ee;
+}
+#browse h3 a:link, 
+#browse h3 a:visited, 
+#browse h3.noAnchor {
+	padding:				0.25em 0 0.5em 10px;
+}
+
+#browse ul, #browse li {
+	list-style:				none; 
+	margin:					0; 
+	padding:				0; 
+	border:					none; 
+	text-indent:			0; 
+}
+#browse li strong { /*Non-referring link */
+	margin:					0; 
+	padding:				5px 0 5px 8px; 
+	line-height:			1.2; 
+	font-weight:			normal;
+	display:				block; 
+	color:					#7e99c1;
+	background-color:		#f6f6f6;
+}
+#browse li strong em {
+	font-style:				normal; 
+	font-weight:			normal;
+}
+#browse li a:link, 
+#browse li a:visited, 
+#browse li a:hover {
+	margin:					0; 
+	padding:				5px 0 5px 8px; 
+	line-height:			1.2; 
+	display:				block; 
+	font-weight:			bold; 
+	color:					#2b4b95; 
+	background-color:		#f6f6f6;
+}
+#browse li a:hover {background-color:#ebeff5; text-decoration:none;}
+#browse .topNews li a:hover, #browse .topNews li a:hover {background-color:#ebeff5;}
+
+#browse li span.hasComments {
+	float:right; padding:6px 5px 0 0; margin:0 0 0 5px;
+}
+#browse li span.hasComments a.comments {padding:0 0 0 18px; font-weight:normal;
+}
+#browse li a em {/* Ace Day Jobs etc */
+	font-style:normal; font-weight:normal; color:#333;
+}
+
+
+#browse #storyNav li a:hover {
+	background-color:#ebeff5;
+}
+
+#browse div.bulletin div.wrapper {
+	margin:0; padding:1em 0!important;
+	background-color:#f6f6f6; 
+}
+#browse div.bulletin div.wrapper h4 {
+	margin:0; padding:0 5px 0.25em 10px;
+}
+#browse div.bulletin div.wrapper h4 a {display:inline;}
+#browse div.bulletin div.wrapper h4 a img {margin:0 5px 5px 0;}
+
+#browse div.bulletin div.wrapper p {
+	margin:0; padding:0 0 0 10px; clear:left;
+}
+#browse div.bulletin div.wrapper p.slug, 
+#browse div.bulletin div.wrapper p.txdate {clear:none!important;}
+
+#browse div.bulletin div.wrapper ul {margin-top:0;}
+
+/* Explore highlights (mostly RN & Catalyst promos) */
+#browse div.explore {
+	border:1px solid #afb3ba;
+	color:#f8ffff; background-color:#f6f6f6;
+}
+#browse div.index {/*simple inheritance of another section style */
+	padding:0!important;
+}
+
+#browse div.explore {
+	margin:0!important; padding:0!important; border:none; 
+	color:#f8ffff; background-color:transparent;
+}
+#browse div.explore h3 {
+	background-color:#fcfcfc!important; color:#b2643b; 
+	padding:5px 10px!important;
+}
+#browse div.explore h3 span {
+	display:block; 
+	margin:0; padding:0;
+}
+#browse div.explore h4 {
+	margin:0 0 0 80px; padding:3px 3px 0 3px; border:none;
+	font-weight:normal; font-size:1.3em;  line-height:1.1;
+	color:#d6e2fc; background;-color:transparent;
+}
+#browse div.explore h4 a.pod {float:right; height:24px; width:1px;}
+#browse div.fixit h4 a.pod {float:none; height:auto; width:auto; padding-right:5px; padding-bottom:0; margin-top:0; margin-bottom:0;}
+
+#browse div.explore img.presenter {
+	position:relative;
+	width:70px; height:70px;
+	border:1px solid #070312;
+	padding:0; margin:-2.25em 5px 25px -15px; float:left;
+}
+#browse div.fixit h4 a img {float:left!important; margin:1.2em 5px 35px 0!important;
+}
+#browse div.explore .timeToAir, #browse div.explore small {
+	display:block; width:313px; 
+	position:absolute; bottom:0; left:0; 
+	color:#f8ffff!important; background-color:#748098;
+
+	margin:0; padding:4px 0 4px 5px; font-size:1em;
+}
+#browse div.explore ul {margin:-0.75em 5px 0 72px; }
+#browse div.explore li a {display:inline;}
+#browse div.explore li a, #browse div.explore li p {
+	margin:0!important; padding:0 auto!important;
+}
+#browse div.explore .timeToAir strong {padding-right:0.25em;}
+
+#browse div.explore .timeToAir br,
+#browse div.explore .presentedBy, 
+#browse div.explore .readMore, 
+#browse div.explore #comingUp h3, #browse div.explore #comingUp h4,
+#browse div#pageNavEnd, #browse div#pageNavTop {
+	display:none;
+}
+#browse div.explore div.fixit h4, #browse div.explore div.fixit #comingUp h4 {
+	display:block; font-size:1em; font-weight:bold; margin:0;padding:0;
+}
+#browse div.explore div.fixit h4 {margin-top:-1em;}
+#browse div.explore div.fixit p {padding:0 5px; margin:-1em auto 0 auto;}
+#browse div.explore div.fixit #comingUp p {padding:0 5px; margin:-0.1em auto 0 auto;}
+
+#browse div.explore a.audio {
+	padding:4px 4px 6px 21px!important; 
+	background-position: 4px 4px;
+}
+
+/* "You might also be interested in..." */
+
+.primarySubject h3 {}
+.primarySubject h3 a:link, 
+.primarySubject h3 a:visited,
+.newsHighlights h3 a:link, 
+.newsHighlights h3 a:visited,
+.subsite h3 a:link, 
+.subsite h3 a:visited {
+	color:					#333!important; 
+	display:				block;
+	padding:				5px 5px 5px 7px!important;
+}
+.primarySubject h3 a strong {
+	font-weight:			normal; 
+	color:					#b2643b;
+}
+
+
+/* ------------ */
+/* -- Did You Know -- */
+
+.didYouKnow {
+	border:					2px dotted #a7adb7;
+	background:				#fcfcfc;
+}
+.didYouKnow h3 {
+	background-color:		#fcfcfc!important;
+	color:					#b2643b; 
+	margin:					0!important; 
+	padding:				5px 10px!important;
+}
+.didYouKnow p {
+	color: 					#6e6e8a; 
+	line-height:			1.4; 
+	padding:				0 5px 5px 10px!important; 
+	margin:					0; 
+	font-size:				1.2em; 
+	font-style:				italic; 
+	font-family: 			Georgia, "Times New Roman", Times, serif;
+}
+.didYouKnow p .didYouKnowURL {
+	display:				block; 
+	font-style:				normal; 
+	font-size:				0.76em; 
+	font-family:			Arial, Helvetica, sans-serif;
+	text-align:				right; 
+	padding:				5px;
+}
+.didYouKnow p .didYouKnowURL a {
+	color:					#002BB8!important;
+}
+
+/* -- Promo Box --*/
+
+#browse .promoBox {
+	border:					none; 
+	float:					none; 
+	margin:					0 0 10px 0!important; 
+	padding:				0!important;
+	clear:					both;
+}
+#browse .promoBox a img {
+	border-width:			0px; 
+	border-style:			solid; 
+	border-color:			#afb3ba #afb3ba #F7F8FC #afb3ba;
+	width:					320px; 
+	height:					60px; 
+	text-decoration:		none;
+	margin:					0;
+	padding:				0;
+}
+#browse .promoBox a:hover img {
+	border-color:			#b2643b #b2643b #b2643b #b2643b;
+}
+#browse .promoBox p, 
+#browse .promoBox ul {
+	background:				#F7F8FC;
+	margin:					-3px 0 0 0!important; 
+	padding:				10px;
+	border-width:			0 1px 1px 1px; 
+	border-style:			solid; 
+	border-color:			#afb3ba;
+}
+
+/* -- This Month in Nature --*/
+
+#browse #pageNavEnd {display:none; visibility:hidden;}
+#browse .thisMonthInNature {
+	color:#fff; background:#868f82;
+	margin:10px 20px; padding:0!important;
+	border:1px solid #8a694d;
+	width: 318px;
+}
+
+#browse .thisMonthInNature a:link, #browse .thisMonthInNature a:visited {color:#faebad; text-decoration:none;}
+#browse .thisMonthInNature a:hover {color:#faebad; text-decoration:underline;}
+#browse .thisMonthInNature .topHighlight {margin:0; padding:0; border:none;}
+#browse .thisMonthInNature .topHighlight div {
+	background:#677063; color:#fff; 
+	margin:0; padding:0 10px!important; 
+	width:298px; border:none!important;
+}
+#browse .thisMonthInNature .topHighlight img {
+	border:1px solid #000;
+	width:285px; height:190px;
+}
+#browse .thisMonthInNature .topHighlight .highlightImgBox {padding:15px 5px 10px 15px!important;}
+#browse .thisMonthInNature h2 {
+	color:#fff; background:#868F82; border:none;
+	padding:10px; margin:0; 
+}
+#browse .thisMonthInNature h2 em	{float:right; font-style:normal; font-size:0.72em; padding:0.28em 3px 0 0; color:#C6CFC2;}
+#browse .thisMonthInNature h3		{color:#fff; background:transparent; border:none; padding:0 0 5px 0; margin:0;}
+#browse .thisMonthInNature h3 a		{display:inline; background:transparent; border:none; padding:0; margin:0;}
+#browse .thisMonthInNature h3 span	{display:block; padding:10px 0 0 10px; margin:0;}
+#browse .thisMonthInNature p		{color:#fff; padding:0 0 5px 0;}
+#browse .thisMonthInNature li a		{display:inline; background:transparent; font-weight:bold;}
+#browse .thisMonthInNature p.readMore {
+	text-align:right; padding:0 5px 5px 0; margin:0;
+}
+
+
+
+/* Multimedia */
+#browse .righthand { 
+	border:					1px solid #afb3ba;
+	color:					#3A3C53; 
+	background-color:		#F7F8FC;
+}
+#browse .righthand .wrapper { 
+	margin:					0; 
+	padding:				0;
+}
+#browse .righthand .wrapper h4 {
+	margin-top: 			0.5em;
+}
+#browse .righthand .wrapper h4 a img {
+	float: 					left; 
+	margin: 				0 1em 0.5em 0; 
+	border-style: 			none;
+}
+#browse .righthand .wrapper h4 a:hover {
+	background-color: 		inherit;
+}
+#browse .righthand .wrapper p {
+	margin: 				0 0 0 0.5em;
+}
+#browse .rightHandSbS {
+	background-color:		#FF66FF;
+}
+#browse .promoBox p.readMore {
+	display: 				block; 
+	float: 					right; 
+	margin: 				0.5em;
+}
+#browse .dashedPromoBox {
+	border: 				2px dashed #e1e5e6; 
+	background-color: 		#fff;
+}
+#browse .dashedPromoBox h3 {
+	background-color: 		#fff; 
+	margin: 				0.5em 0.5em 0 0.5em;
+}
+#browse .dashedPromoBox a img {
+	float: 					left; 
+	margin: 				0.5em 1em 0.5em 0.5em; 
+	border-style: 			none;
+}
+#browse .dashedPromoBox p {
+	font-weight: 			bold; 
+	color: 					#707070;
+}
+#browse .dashedPromoBox p.readMore {}
+#browse .dashedPromoBox div.clear {
+	height: 				0.25em;
+}
+#browse .righthand h3 {
+	color:					#333;
+	background-color:		#eee;
+}
+#browse .righthand h3 a {
+	background-color:		transparent;
+}
+#browse .righthand h3 span {
+	color:					#39579c!important; 
+	font-style:				normal!important;
+}
+#browse .righthand .selected p.title {
+	color:					#39579c!important;
+}
+#browse .righthand .selected p.show {
+	color:					#333!important; 
+	padding-top:			0.25em!important
+}
+#browse .righthand .selected p.show, 
+#browse .righthand .selected p.title {
+	background-color:		#eee!important;
+	margin:					0!important; 
+	padding-left:			10px!important; 
+	padding-right:			10px!important; 
+	width:					298px!important;
+}
+#browse .righthand div.content {
+	background-color:		#e4e4e4!important;
+}
+
+#browse .righthand .selected .selected {
+	margin:					0!important; 
+	padding:				0;
+}
+#browse .righthand .selected .selected p.title, 
+#browse .righthand .selected .selected p.show {
+	background-color:		#e4e4e4!important;
+}
+
+/* Best of ABC */
+	
+#browse #bestOfABC { 
+	border:1px solid #acb8ae;
+	background-color:#fff; 
+	background-image:url(/science/inc/browse/promos/bestof/bestOfABC_bg.png); 
+	background-repeat: no-repeat; 
+	background-position: bottom right;
+}
+#browse #bestOfABC h3 { 
+	background-color:transparent!important; padding: 0; margin: 0; 
+	font-weight: bold;
+}
+#browse #bestOfABC a {
+	background-color:transparent!important; color: #3e7639; 
+	padding:0; margin:0;
+}
+#browse #bestOfABC h3 a {display:block; margin:0; padding:5px 5px 10px 10px;}
+#browse #bestOfABC div {
+	margin:0; padding: 0; 
+	background-color:transparent; 
+	border:none;
+}
+#browse #bestOfABC div img {float:left; margin:5px 10px 0.5em 10px;}
+#browse #bestOfABC div h3, #browse #bestOfABC div p {
+	margin:0 5px 2px 10px; color: #333; font-size: 1em;
+}
+#browse #bestOfABC div ul {list-style:none; margin:0 5px 10px 10px; padding:0; clear:both;}
+#browse #bestOfABC div li {margin:0; padding:3px 0; clear:both;}
+#browse #bestOfABC div li a:hover {text-decoration:underline;}
+
+
+/* Browse fixes*/
+
+#browse .browseItemWrapper {position:relative;}
+#browse .browseItemWrapper div {margin:0; padding:0; border:none; background-color:transparent!important;}
+#browse .browseItemWrapper div.wrapper {
+	border:1px solid #afb3ba;
+	color:#3A3C53; background-color:#F7F8FC;
+	padding:0 0 10px 0!important;
+}
+.browseItemWrapper h3 {font-weight:normal; background-color:transparent!important;}
+.browseItemWrapper h3 a:link, .browseItemWrapper h3 a:visited {
+	display:block;
+	color:#b2643b!important; background-color:transparent!important;
+	border-bottom:1px solid #B2643B;
+	padding:0 0 0.25em 0!important; margin:0!important;
+}
+.browseItemWrapper h3 a:hover, .browseItemWrapper h3 a:focus {color:#800309!important; text-decoration:none; border-bottom:1px solid #800309;}
+.browseItemWrapper h4 a img {margin:0 0.5em 0 -0.25em; border:none;}
+.browseItemWrapper h4, .browseItemWrapper p {
+	margin:0; padding:0 10px
+}
+.browseItemWrapper h3 {margin:0; padding:0;}
+.browseItemWrapper h4 a:link, #browse h4 a:visited {
+	padding:6px 0 9px 5px; display:block; color:#2b4b95; 
+}
+.browseItemWrapper h4 a:hover {color:#39579c;background-color:transparent; text-decoration:underline;}
+
+#browse .righthand div.accordion div.content  { display: none;}
+#browse .righthand div.accordion div.item1  { display: block!important;}
+
+/* Health and Wellbeing content in tag libraries */
+
+#browse .healthWellbeing {border:none; padding:0; margin:0;}
+#browse .healthWellbeing h3 {padding:0.5em;}
+
+
+#browse .healthWellbeing .variantA p a.more {
+	display:block; text-align:right; font-size:1em; padding:0 1em; margin:0;
+}
+#browse .healthWellbeing .variantA, 
+#browse .healthWellbeing .variantB {
+	background-color:#f6f6f6; border:1px solid #afb3ba; position:relative;
+	padding-top:3px;
+}
+#browse .healthWellbeing .variantA div {
+	border:none; background:#f8fafe;
+	margin:0.5em!important; padding:3px;
+}
+#browse .healthWellbeing .variantA div p {
+	margin:0; padding:3px 3px 0 7px; background:transparent;
+}
+#browse .healthWellbeing .variantA div a {background-color:transparent;}
+#browse .healthWellbeing .variantA div a:hover {text-decoration:underline;}
+#browse .healthWellbeing .variantB li {
+	padding:3px 3px 3px 6px; margin:0;
+}
+#browse .healthWellbeing .variantB li a:link,
+#browse .healthWellbeing .variantB li a:visited,
+#browse .healthWellbeing .variantB li a:hover {
+	display:inline;
+	background:transparent;
+	padding:0; margin:0;
+}
+a#swineFluLink {display:block; margin:0 0 8px 8px!important;}
+
+a#swineFluLink img {float:none; width:170px;}
+
+
+#browse .healthWellbeing .divider {border:none; padding:0; margin:0;}
+
+/* Video acordian from Dan */
+/*
+div.righthand {
+				border:#e1e6e9 1px solid;
+				width:300px;
+			}
+*/				
+#browse div.accordion, #browse div.accordion div {margin:auto 0; padding:0; border:none;}
+#browse div.righthand	{	border: 1px solid #AFB3BA;}
+#browse div.righthand h3 {
+	padding:10px 5px;
+	margin:0;
+	color:#333;
+	font-size:1.25em; 
+}
+#browse div.righthand h3 a, #browse div.righthand h3 a:link, #browse div.righthand h3 a:visited {
+							display:block; /* color:#b2643b; */ color:39579C; margin:0!important; padding: 0!important; text-align: left;
+							font-size: 0.9em; height: 1.3em;
+							}
+#browse div.righthand h3 {		}
+#browse div.righthand h3 span {
+	font-size:0.9em;
+	color:#999999;
+	font-weight:normal;
+	font-style:italic;
+}
+
+#browse div.accordion div.title {
+	margin: 0;
+	padding:5px;
+	color:#39579C;
+	font-weight:bold;
+	outline:none;
+}
+#browse div.accordion div.title 	{	border-bottom: 0px solid #cccfd7;}
+#browse div.accordion div.title.selected	{	border: 0px none #fff; outline: 0 none;}	
+
+#browse div.accordion div.title p {
+	padding:0 0 0.75em 0;
+	margin: 0 auto 0 auto;
+	width: 285px;
+}
+#browse div.accordion div.title p.show {
+	color:#999; height: 15px;
+	font-size:0.85em;
+	font-weight:normal;
+	padding: 0.5em 0.5em 0 0.5em;
+	background-image:url(/img/browse.widget.inactive.png);
+	background-repeat: no-repeat; background-position: 295px 5px;
+}
+#browse div.accordion div.title.selected p.show { 
+background-image:url(/img/browse.widget.active.png);
+}
+
+#browse div.accordion div.content {
+	text-align:center;
+	background-color: #EEEEEE;
+	margin: 0 auto 1em auto;
+}
+#browse div.accordion.selected div.content {
+	margin-bottom: 0;
+	background-color: #E4E4E4;
+	border:none;
+}
+#browse div.accordion div.content p { 
+	text-align:left;
+}
+
+#browse div.accordion div.content, #browse div.accordion div.title { cursor:pointer;}
+
+/* Catalyst thumbnail images are an awkward size so we account for that with 17 pixels of black */
+#browse div.accordion div.video a.link img { width: 285px; margin:0;}
+#browse div.accordion div.catalyst a.link img { width: 285px; margin: 17px 0;}
+
+#browse div.accordion div.video, #browse div.accordion div.audio { padding-bottom: 13px!important;	}
+			
+#browse div.accordion div.video a.link { 
+	position: relative; display: block; 
+	width: 285px; height: 190px;  margin: 0 auto;
+	cursor:pointer; 
+	background-color: #000;
+}
+
+#browse div.accordion div.video a.link span.vidPlay { 
+	display:block; position:absolute;  
+	width:120px; height:120px; left:82px; top:35px;
+	visibility: visible;
+	background-image: url(/science/video/img/playbutton-overlay00.png); 
+	opacity: 0.8; z-index: 999;
+}
+
+			
+

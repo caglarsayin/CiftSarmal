@@ -30,6 +30,9 @@ from google.appengine.api import users
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
+class Subscribers(db.Model):
+    email = db.EmailProperty(required=True)
+    subscribtion_date = db.DateProperty(required=True)
 
 class Article(db.Model):
     title = db.StringProperty(required=True,indexed=False)
@@ -46,19 +49,32 @@ class Article(db.Model):
     videoLings = db.ListProperty(db.Link,indexed=False)
     urlAdress = db.StringProperty(indexed=True)
 
+class Subscribe(webapp2.RequestHandler):
+    def get(self):
+        mail=self.request.get("email")
+        newSubsriber = Subscribers(email=mail,subscribtion_date=datetime.datetime.now().date())
+
+        newSubsriber.put()
+        self.response.out.write("Tesekkur Ederiz.")
+
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.redirect("/list")
+        self.redirect("list/all/1")
 
 class jinja(webapp2.RequestHandler):
-    def get(self,pageno,page):
+    def get(self,page,cat,pageno):
         if pageno:
-            pageno=int(pageno[1:])
+            pageno=int(pageno)
         else:
             pageno=1
+        if cat=="all":
+            q = db.GqlQuery("SELECT * FROM Article ORDER BY additionDate DESC")
+        else:
+            q = db.GqlQuery("SELECT * FROM Article where categ = :1 ORDER BY additionDate DESC",cat)
+
         template = jinja_environment.get_template('static/listing_jinja.html')
-        q = db.GqlQuery("SELECT * FROM Article "+"ORDER BY additionDate DESC")
-        articles=q.fetch(pageno*10,offset=pageno*10-10)
+        articles=q.fetch(10,offset=pageno*10-10)
         self.response.out.write(template.render({'articles': articles,'pageno':pageno}))
 
 class postIt(webapp2.RequestHandler):
@@ -199,7 +215,7 @@ class iletisim(webapp2.RequestHandler):
 app = webapp2.WSGIApplication(
     [
     ('/', MainHandler),
-    ('/list((/)[0-9]*)?', jinja),
+    ('/list(/([a-z]*)/([0-9]*))', jinja),
     ('/posting', posting),
     ('/postit',postIt),
     ('/hakkimizda/',hakkimizda),
@@ -208,6 +224,7 @@ app = webapp2.WSGIApplication(
     ('/conditions/',kosullar),
     ('/contact/',iletisim),
     ('/serve/([^/]+)?', ServeHandler),
+    ('/subscribe', Subscribe),
     webapp2.Route('/article/<slub:([^/]+)?>', article,'article'),
     webapp2.Route('/debug', debugg,"debugg")
     ],debug=True)

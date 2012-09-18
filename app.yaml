@@ -22,6 +22,10 @@ handlers:
   static_files: static/js/\1
   upload: static/js/(.*)
 
+- url: /abcjs/(.*)
+  static_files: static/abcjs/\1
+  upload: static/abcjs/(.*)
+
 - url: /ckeditor
   static_dir: static/ckeditor/
   
