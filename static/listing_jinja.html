@@ -18,12 +18,34 @@
 <link rel="stylesheet" type="text/css" href="/css/all.css">
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/main.js" class="gloaded sync"></script>
+
+
+<!--SCRIPTS from abc -->
+<link rel="stylesheet" type="text/css" media="Screen" title="Default" href="/css/browse.css">
+<script type="text/javascript" src="/abcjs/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/abcjs/jquery.ui.js"></script>
+<script type="text/javascript" src="/abcjs/jquery.ui.accordion.js"></script>
+<script type="text/javascript" src="/abcjs/swfobject-2.2.js"></script>
+<script type="text/javascript" src="/abcjs/SWFObject.js"></script>
+<script type="text/javascript" src="/abcjs/cinerama2.js"></script>
+<script type="text/javascript" src="/abcjs/cinerama2_functions.js"></script>
+<script type="text/javascript" src="/abcjs/abc.science.js"></script>
+<script type="text/javascript" src="/js/jquery.jplayer.min.js"></script>
+
  <script type="text/javascript">
  var addthis_config = {"5020a0da0730e6d5":true};
  </script> <script type="text/javascript"
  src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=[5020a0da0730e6d5]"></script>
 </head>
 <body id="www-bbcturkce-com" class="topic-cluster genre-topics ltr">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 {% include 'static/navbar.html' %}
 <div id="blq-container-outer" class="blq-worldservice-worldwide blq-ltr">
 	<div id="blq-container" class="blq-lang-tr-TR blq-dotcom blq-int-nav">
@@ -40,157 +62,21 @@
 						</div>
 					</div>
 					<div class="g-group">
-						<div class=" g-w20 g-first">
+						<div class="g-w20 g-first">
 							<div class="g-container av-body">
 								<h1>Bilim ve Teknoloji</h1>
 							</div>
 							<div class="g-container av-body">
 								<div class="datestamp">
-									<span class="lastupdated">Son güncelleme: &nbsp; 3 AĞUSTOS 2012 - TSİ 13:37</span>
-								</div>
-							</div>
-							<div class="g-container">
-								<div class="list li-listing">
-									<div class="content">
-										<ul>
-											{% for article in articles %}
-											<li class="ts-144x81 first teaser">
-											<h2 class="link title"><a href="/article/{{ article.urlAdress}}">{{ article.title }}<img alt="" width="144" height="81" src="/serve/{{ article.imgKey.key() }}"></a></h2>
-											<div class="body">
-												<p class="summary">
-													{{ article.summary }}
-												</p>
-												<!-- AddThis Button BEGIN -->
-												<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=xa-5020a0da0730e6d5"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
-												<!-- AddThis Button END -->
-											</div>
-											</li>
-											{% endfor %}
-										</ul>
-										<div class="nav">
-											<ul>
-												<li class="prev">
-												<a {% if pageno > 1 %} href={{ pageno-1 }}{% endif %}> önceki</a>
-                                                </li>
-                                                {% for number in range((pageno//10)*10+1,(pageno//10)*10+11) %}
-												    {% if pageno == number %}
-                                                        <li class="current"><a href="/list/{{ pageno }}">{{ pageno }}</a></li>
-                                                    {% else %}
-                                                        <li><a href="/list/{{ number}}">{{ number }}</a></li>
-                                                    {% endif %}
-                                                {% endfor %}
-
-                                                <li class="next">
-                                                 <a href={{ pageno+1}}>
-												sonraki </a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" g-w11">
-							<div class="g-container">
-								<!-- mr:hp homepage/(none)/(none) 
--->
-								<div class="list li-plain topstories-list">
-									<h2 class="title">Başlıca Haberler</h2>
-									<a class="rss" href="http://www.bbc.co.uk/turkce/index.xml">RSS</a>
-									<div class="content">
-										<ul>
-											<li class="teaser ts-headline body-disabled first">
-											<a href="http://www.bbc.co.uk/turkce/haberler/2012/08/120805_aleppo.shtml">Suriye'de çatışmalar Halep'te yoğunlaşıyor</a>
-											<span id="dt-2012-08-05T16:15:57+03:00" class="timeago" style="display: inline; visibility: visible; ">05.08.12</span>
-											</li>
-											<li class="teaser ts-headline body-disabled">
-											<a href="http://www.bbc.co.uk/turkce/haberler/2012/08/120805_murray_win.shtml">2012 Londra: Murray Federer'i devirdi</a>
-											<span id="dt-2012-08-05T19:35:46+03:00" class="timeago" style="display: inline; visibility: visible; ">05.08.12</span>
-											</li>
-											<li class="teaser ts-headline body-disabled">
-											<a href="http://www.bbc.co.uk/turkce/haberler/2012/08/120805_hakkari.shtml">Hakkari'de çatışma</a>
-											<span id="dt-2012-08-05T12:26:58+03:00" class="timeago" style="display: inline; visibility: visible; ">05.08.12</span>
-											</li>
-										</ul>
-									</div>
+									<span class="lastupdated">Son güncelleme: &nbsp; {{ articles[0].additionDate}}</span>
 								</div>
 							</div>
 							<div class="g-container">
                                 {% include 'static/list.html' %}
 							</div>
-							<div class="g-container">
-								<div xmlns="http://www.w3.org/1999/xhtml" class="list li-specialfeatures">
-									<h2 class="title">Seçtiklerimiz</h2>
-									<div class="content">
-										<ul>
-											<li class="ts-304x171 first teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/ozeldosyalar/2012/07/120703_syria_russia.shtml">Rusya'nın Suriye politikası<img alt="" width="304" height="171" src="/img/120211150618_syria_assad_russia_reuters.jpg"></a></h3>
-											<div class="body">
-												<p class="summary">
-													Suriye krizi derinleşirlken gözler bölgede askeri üssü bulunan Rusya’nın ne yapacağına çevrildi.
-												</p>
-											</div>
-											</li>
-											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/euro2012.shtml">EURO 2012 ÖZEL<img alt="" width="112" height="63" src="/img/120603120628_euro_2012_banner_112x63_bbc_nocredit.jpg"></a></h3>
-											<div class="body">
-												<p class="summary">
-													BBC Türkçe'nin Avrupa Futbol Şampiyonası için hazırladığı özel dosyalar için tıklayın.
-												</p>
-											</div>
-											</li>
-											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/2012/06/120619_turkey_prisons.shtml">Türkiye'de cezaevi isyanları<img alt="" width="112" height="63" src="/img/120619183526_turkey_prison_112x63_bbc_nocredit.jpg"></a></h3>
-											<div class="body">
-												<p class="summary">
-													Konuyla ilgili araştırma ve inceleme yapan uzmanlarla görüştük.
-												</p>
-											</div>
-											</li>
-											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/2012/06/120619_algeria_france.shtml">Geçmişle yüzleşen Fransa<img alt="" width="112" height="63" src="/img/120619113403_algeria_112x63_bbc_nocredit.jpg"></a></h3>
-											<div class="body">
-												<p class="summary">
-													Paris’teki Kara Kuvvetleri Müzesi'nde Cezayir'in sömürge yılları mercek altında.
-												</p>
-											</div>
-											</li>
-											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/2012/06/120619_environment_ratings.shtml">Türkiye'nin çevre notu: BBB-<img alt="" width="112" height="63" src="/img/120409152325_zermatt_112.jpg"></a></h3>
-											<div class="body">
-												<p class="summary">
-													Kredi derecelendirme kuruluşlarının örnek alındığı raporun ayrıntıları.
-												</p>
-											</div>
-											</li>
-											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/ozeldosyalar/2012/06/120619_syria_chemical.shtml">Suriye'nin kimyasal silahları<img alt="" width="112" height="63" src="/img/120120135452_chemical_expert_112x63_bbc_nocredit.jpg"></a></h3>
-											<div class="body">
-												<p class="summary">
-													BBC savunma muhabiri Jonathan Marcus, Suriye'nin mühimmat güvenliğini sorguluyor.
-												</p>
-											</div>
-											</li>
-											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/haberler/2012/06/120618_greece_mason.shtml">Avrupa nefes aldı<img alt="" width="112" height="63" src="/img/120523063408_euro_112x63_reuters_nocredit.jpg"></a></h3>
-											<div class="body">
-												<p class="summary">
-													BBC Ekonomi editörü Paul Mason'a göre Yunanistan seçimleri Avrupa'ya zaman kazandırdı.
-												</p>
-											</div>
-											</li>
-											<li class="ts-112x63 teaser">
-											<h3 class="link title"><a href="http://www.bbc.co.uk/turkce/ozeldosyalar/londra_2012.shtml">2012 Londra Olimpiyat Oyunları<img alt="2012 Londra Olimpiyat Oyunları" width="112" height="63" src="/img/101011190943_olympics_mechandise_112x63.jpg"></a></h3>
-											<div class="body">
-												<p class="summary">
-													Oyunlara üçüncü kez ev sahipliği edecek olan Londra, yüzden fazla ülkeyi ağırlamaya hazırlanıyor
-												</p>
-											</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
+						</div>
+						<div class="g-w11">
+                            {% include 'static/sidebar.html' %}
 						</div>
 					</div>
 				</div>
@@ -198,7 +84,7 @@
 		</div>
 	</div>
 </div>
-		<!-- CS footer's place -->
+<!-- CS footer's place -->
 {% include 'static/footer.html' %}
 <!-- the end of the CS footer's place -->
 </body>

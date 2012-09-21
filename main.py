@@ -32,13 +32,14 @@ jinja_environment = jinja2.Environment(
 
 class Subscribers(db.Model):
     email = db.EmailProperty(required=True)
-    subscribtion_date = db.DateProperty(required=True)
+    subscribtion_date = db.DateProperty(auto_now_add=True)
 
 class Article(db.Model):
     title = db.StringProperty(required=True,indexed=False)
     text = db.TextProperty(required=True,indexed=False)
     imgKey = blobstore.BlobReferenceProperty(required=True,indexed=False)
-    additionDate = db.DateProperty(required=True,indexed=True)
+    audioKey = blobstore.BlobReferenceProperty(required=False,indexed=False)
+    additionDate = db.DateTimeProperty(auto_now_add=True,indexed=True)
     summary = db.TextProperty(required=True,indexed=False)
     editor = db.UserProperty(required=True,indexed=True)
     tags = db.StringListProperty(indexed=True)
@@ -52,7 +53,7 @@ class Article(db.Model):
 class Subscribe(webapp2.RequestHandler):
     def get(self):
         mail=self.request.get("email")
-        newSubsriber = Subscribers(email=mail,subscribtion_date=datetime.datetime.now().date())
+        newSubsriber = Subscribers(email=mail)
 
         newSubsriber.put()
         self.response.out.write("Tesekkur Ederiz.")
@@ -62,7 +63,7 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         self.redirect("list/all/1")
 
-class jinja(webapp2.RequestHandler):
+class listing(webapp2.RequestHandler):
     def get(self,page,cat,pageno):
         if pageno:
             pageno=int(pageno)
@@ -92,9 +93,6 @@ class posting(blobstore_handlers.BlobstoreUploadHandler):
         try:
             postedimg = self.get_uploads('img')  # 'file' is file upload field in the form
             imgBlob = postedimg[0]
-            if self.get_uploads("audio"):
-                postedaudio = self.get_uploads('audio')
-                audioBlob = postedaudio[0]
             dataModel = Article(title = self.request.get('baslik'),
                             text = db.Text(self.request.get('editor')),
                             orjinalLink = db.Link(self.request.get('link')),
@@ -103,13 +101,15 @@ class posting(blobstore_handlers.BlobstoreUploadHandler):
                             categ = self.request.get('cate'),
                             summary = self.request.get('summary'),
                             imgKey = imgBlob.key(),
-                            additionDate = datetime.datetime.now().date(),
                             editor = users.get_current_user(),
                             urlAdress = self.normalizeIt(self.request.get('baslik')))
+            if self.get_uploads("audio"):
+                postedaudio = self.get_uploads('audio')
+                dataModel.audioKey = postedaudio[0]
             dataModel.put()
         except:
-#            raise
-            self.redirect("/postit")
+            raise
+#            self.redirect("/postit")
 
     def normalizeIt(self,s):
         valid_chars='-_ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
@@ -135,7 +135,6 @@ class ServeHandler(webapp2.RequestHandler):
     def get(self,blob_key):
         if blob_key:
             blob_info = blobstore.get(blob_key)
-
             if blob_info:
                 img = images.Image(blob_key=blob_key)
                 img.resize(width=144, height=81)
@@ -149,6 +148,13 @@ class ServeHandler(webapp2.RequestHandler):
         # Either "blob_key" wasn't provided, or there was no value with that ID
         # in the Blobstore.
         self.error(404)
+
+class mp3Handler(blobstore_handlers.BlobstoreDownloadHandler):
+    def get(self, audioKey):
+        if not blobstore.get(audioKey):
+            self.error(404)
+        else:
+            self.send_blob(audioKey)
 
 
 class debugg(webapp2.RequestHandler):
@@ -215,7 +221,7 @@ class iletisim(webapp2.RequestHandler):
 app = webapp2.WSGIApplication(
     [
     ('/', MainHandler),
-    ('/list(/([a-z]*)/([0-9]*))', jinja),
+    ('/list(/([a-z]*)/([0-9]*))', listing),
     ('/posting', posting),
     ('/postit',postIt),
     ('/hakkimizda/',hakkimizda),
@@ -224,6 +230,7 @@ app = webapp2.WSGIApplication(
     ('/conditions/',kosullar),
     ('/contact/',iletisim),
     ('/serve/([^/]+)?', ServeHandler),
+    ('/mp3/([^/]+)?', mp3Handler),
     ('/subscribe', Subscribe),
     webapp2.Route('/article/<slub:([^/]+)?>', article,'article'),
     webapp2.Route('/debug', debugg,"debugg")

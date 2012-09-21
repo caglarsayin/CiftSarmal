@@ -1,52 +1,62 @@
-<div class="box bx-livestats tabbed">
+<div class="list li-listing">
+    <div class="content">
+        <ul>
+            {% for article in articles %}
+            <li class="ts-144x81 first teaser">
+                <h2 class="link title"><a href="/article/{{ article.urlAdress}}">{{ article.title }}<img alt="" width="144" height="81" src="/serve/{{ article.imgKey.key() }}"></a></h2>
+                <div class="body">
+                    <p class="summary">
+                        {{ article.summary }}
+                    </p>
+                    <div id="jquery_jplayer" style="width: 0px; height: 0px; ">
+                        <img id="jp_poster_0" style="width: 0px; height: 0px; display: none; ">
+                        <audio id="jp_audio_0" preload="metadata" src="http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3"></audio>
+                    </div>
+                    <!-- AddThis Button BEGIN -->
+                    <div class="g-group">
+                        <div class="g-w10 g-first">
+                            <a href="/article/{{ article.urlAdress}}" style= "margin-right:10 px;color: #828282;font: bold 11px verdana;">Oku</a>
+                            <a href="{{article.orjinalLink}}" style= "margin:10 px;color: #828282;font: bold 11px verdana;">Orjinalini Oku</a>
+                            {%- if article.audioKey -%}
+                            <a href="#" onclick="$("jquery_jplayer").jPlayer( "play" );" style= "margin:10 px;color: #828282;font: bold 11px verdana;">Dinle</a>
+                            <a href="/mp3/{{ article.audioKey.key() }}" style= "margin:10 px;color: #828282;font: bold 11px verdana;">Indir</a>
+                            {% endif %}
+                            <a href="http://www.bbc.co.uk/turkce/" style= "margin:10 px;color: #828282;font: bold 11px verdana;">Yazdir</a>
+                        </div>
+                        <div class="addthis_toolbox addthis_default_style g-w5" addthis:url="http://www.ciftsarmal.com/serve/{{ article.urlAdress}}" addthis:title="{{ article.title }}" >
+                            <a class="addthis_button_preferred_1"></a>
+                            <a class="addthis_button_preferred_2"></a>
+                            <a class="addthis_button_preferred_3"></a>
+                            <a class="addthis_button_preferred_4"></a>
+                            <a class="addthis_button_compact"></a>
+                            <a class="addthis_counter addthis_bubble_style"></a>
+                        </div>
 
-    <h2 class="title">En fazla ilgi çekenler</h2>
-    <h3 class="tab "><a href="#">Okunanlar</a></h3>
+                    </div>
+                    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5057b8e965920d08;"></script>
+                    <!-- AddThis Button END -->
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="nav">
+            <ul>
+                <li class="prev">
+                    <a {% if pageno > 1 %} href={{ pageno-1 }}{% endif %}> önceki</a>
+                </li>
+                {% for number in range((pageno//10)*10+1,(pageno//10)*10+11) %}
+                {% if pageno == number %}
+                <li class="current"><a href="{{ pageno }}">{{ pageno }}</a></li>
+                {% else %}
+                <li><a href="{{ number}}">{{ number }}</a></li>
+                {% endif %}
+                {% endfor %}
 
-    <div class="content ">
-        <div class="body">
-            ﻿<ol>
-            <li class="li-1">
-                <a href="http://www.bbc.co.uk/turkce/haberler/2012/09/120915_protest_update.shtml">NATO üssüne Taliban'ın 'video saldırısı'</a>
-            </li>
-            <li class="li-2">
-                <a href="http://www.bbc.co.uk/turkceundefined">Headline unavailable</a>
-            </li>
-            <li class="li-3">
-                <a href="http://www.bbc.co.uk/turkce/haberler/2012/09/120913_film_turkey.shtml">Tepki çeken filmde Türkiye bağlantısı iddiası</a>
-            </li>
-            <li class="li-4">
-                <a href="http://www.bbc.co.uk/turkce/haberler/2010/08/100804_sexbrasil.shtml">Seks turizminin yeni merkezi: Brezilya</a>
-            </li>
-            <li class="li-5">
-                <a href="http://www.bbc.co.uk/turkce/haberler/2012/09/120913_mammoth_clone.shtml">Yünlü mamuta klon umudu</a>
-            </li>
-        </ol>
+                <li class="next">
+                    <a href={{ pageno+1}}>
+                    sonraki </a>
+                </li>
+            </ul>
         </div>
     </div>
-
-
-    <h3 class="tab open"><a href="#">İzlenen/Dinlenenler</a></h3>
-    <div class="content watched-listened open">
-        <div class="body">
-            ﻿<ol>
-            <li class="li-1">
-                <a href="http://www.bbc.co.uk/turkce/multimedya/2012/09/120914_ukraine_push_up_boy.shtml">7 Yaşında çocuk şınav rekoru kırdı</a>
-            </li>
-            <li class="li-2">
-                <a href="http://www.bbc.co.uk/turkce/multimedya/2012/09/120914_vid_love_padlock_rome.shtml">Aşıklar köprüsünün kilitleri sökülüyor</a>
-            </li>
-            <li class="li-3">
-                <a href="http://www.bbc.co.uk/turkce/multimedya/2012/09/120914_vid_usa_drink_ban.shtml">New York'ta büyük boy içecek yasağı</a>
-            </li>
-            <li class="li-4">
-                <a href="http://www.bbc.co.uk/turkce/multimedya/2012/01/120106_dg_kpop.shtml">Japonya'da K-Pop rüzgârı</a>
-            </li>
-            <li class="li-5">
-                <a href="http://www.bbc.co.uk/turkce/multimedya/2012/09/120911_vid_cairo_protest.shtml">Kahire'de ABD büyükelçiliği basıldı</a>
-            </li>
-        </ol>
-        </div>
-    </div>
-
 </div>
