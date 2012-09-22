@@ -132,7 +132,7 @@ class article(webapp2.RequestHandler):
 
 
 class ServeHandler(webapp2.RequestHandler):
-    def get(self,blob_key):
+    def get(self,blob_key,ext):
         if blob_key:
             blob_info = blobstore.get(blob_key)
             if blob_info:
@@ -150,7 +150,7 @@ class ServeHandler(webapp2.RequestHandler):
         self.error(404)
 
 class mp3Handler(blobstore_handlers.BlobstoreDownloadHandler):
-    def get(self, audioKey):
+    def get(self, audioKey,name,ext):
         if not blobstore.get(audioKey):
             self.error(404)
         else:
@@ -229,8 +229,8 @@ app = webapp2.WSGIApplication(
     ('/privacy/',gizlilik),
     ('/conditions/',kosullar),
     ('/contact/',iletisim),
-    ('/serve/([^/]+)?', ServeHandler),
-    ('/mp3/([^/]+)?', mp3Handler),
+    ('/serve/([^/]+)?(.jpg)$', ServeHandler),
+    ('/mp3/([^/]+)?(/).*(.mp3)$', mp3Handler),
     ('/subscribe', Subscribe),
     webapp2.Route('/article/<slub:([^/]+)?>', article,'article'),
     webapp2.Route('/debug', debugg,"debugg")

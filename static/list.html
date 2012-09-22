@@ -3,23 +3,19 @@
         <ul>
             {% for article in articles %}
             <li class="ts-144x81 first teaser">
-                <h2 class="link title"><a href="/article/{{ article.urlAdress}}">{{ article.title }}<img alt="" width="144" height="81" src="/serve/{{ article.imgKey.key() }}"></a></h2>
+                <h2 class="link title"><a href="/article/{{ article.urlAdress}}">{{ article.title }}<img alt="" width="144" height="81" src="/serve/{{ article.imgKey.key() }}.jpg"></a></h2>
                 <div class="body">
                     <p class="summary">
                         {{ article.summary }}
                     </p>
-                    <div id="jquery_jplayer" style="width: 0px; height: 0px; ">
-                        <img id="jp_poster_0" style="width: 0px; height: 0px; display: none; ">
-                        <audio id="jp_audio_0" preload="metadata" src="http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3"></audio>
-                    </div>
                     <!-- AddThis Button BEGIN -->
                     <div class="g-group">
                         <div class="g-w10 g-first">
                             <a href="/article/{{ article.urlAdress}}" style= "margin-right:10 px;color: #828282;font: bold 11px verdana;">Oku</a>
                             <a href="{{article.orjinalLink}}" style= "margin:10 px;color: #828282;font: bold 11px verdana;">Orjinalini Oku</a>
                             {%- if article.audioKey -%}
-                            <a href="#" onclick="$("jquery_jplayer").jPlayer( "play" );" style= "margin:10 px;color: #828282;font: bold 11px verdana;">Dinle</a>
-                            <a href="/mp3/{{ article.audioKey.key() }}" style= "margin:10 px;color: #828282;font: bold 11px verdana;">Indir</a>
+                            <a href="#" style= "margin:10 px;color: #828282;font: bold 11px verdana;">Dinle</a>
+                            <a href="/mp3/{{ article.audioKey.key() }}/{{ article.urlAdress}}.mp3" style= "margin:10 px;color: #828282;font: bold 11px verdana;">Indir</a>
                             {% endif %}
                             <a href="http://www.bbc.co.uk/turkce/" style= "margin:10 px;color: #828282;font: bold 11px verdana;">Yazdir</a>
                         </div>
