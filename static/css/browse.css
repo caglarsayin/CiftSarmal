@@ -1,20 +1,20 @@
 /* ----------- RIGHT column ------------- */
 /* ----------- Search ------------------- */
 #scienceSearch {
-    width:					320px;
+    width:					420px;
     float:					left;
 }
 #scienceSearch form {
     text-align:				left;
     padding:				0px 0 15px 0;
     margin:					0px 0 10px 0px;
-    border:					1px solid #afb3ba;
-    background:				#f6f6f6;
+    border:					1px solid #009BE3;
+    background:				#EEE;
 }
 #scienceSearch form legend,
 #scienceSearch form legend a {
     color:					#484848;
-    background:				#f6f6f6;
+    background:				#EEE;
     font-weight:			normal;
 }
 #scienceSearch #query {
@@ -42,7 +42,7 @@ li a#linkButton {display:none; visibility:hidden;}
 
 /* ----------- Browse ------------- */
 #browse        {
-	width:					320px;
+	width:					420px;
 	float:					left;
 /*	margin:					0 20px;*/
 }
@@ -53,7 +53,7 @@ li a#linkButton {display:none; visibility:hidden;}
 	text-align:				left;
 }
 #browse div.newsHighlights {
-	border:					1px solid #afb3ba;
+	border:					1px solid #009BE3;
 	color:					#3A3C53; 
 	background-color:		#F7F8FC;
 	position:				relative;
@@ -61,18 +61,18 @@ li a#linkButton {display:none; visibility:hidden;}
 
 #browse div.topNews {
 	background-color:		#dcdfe6; 
-	border:					1px solid #afb3ba; 
+	border:					1px solid #009BE3;
 	position:				relative;
 }
 
 #browse div.subsite {
-	background-color:		#f6f6f6; 
-	border:					1px solid #afb3ba; 
+	background-color:		#EEE; 
+	border:					1px solid #009BE3;
 	position:				relative;
 }
 #browse div.primarySubject, 
 #browse div.newsHighlights {
-	border:					1px solid #afb3ba; 
+	border:					1px solid #009BE3;
 	position:				relative;
 }
 #browse a:link, #browse a:visited {
@@ -108,7 +108,7 @@ li a#linkButton {display:none; visibility:hidden;}
 	font-weight:			normal;
 	display:				block; 
 	color:					#7e99c1;
-	background-color:		#f6f6f6;
+	background-color:		#EEE;
 }
 #browse li strong em {
 	font-style:				normal; 
@@ -123,7 +123,7 @@ li a#linkButton {display:none; visibility:hidden;}
 	display:				block; 
 	font-weight:			bold; 
 	color:					#2b4b95; 
-	background-color:		#f6f6f6;
+	background-color:		#EEE;
 }
 #browse li a:hover {background-color:#ebeff5; text-decoration:none;}
 #browse .topNews li a:hover, #browse .topNews li a:hover {background-color:#ebeff5;}
@@ -144,7 +144,7 @@ li a#linkButton {display:none; visibility:hidden;}
 
 #browse div.bulletin div.wrapper {
 	margin:0; padding:1em 0!important;
-	background-color:#f6f6f6; 
+	background-color:#EEE; 
 }
 #browse div.bulletin div.wrapper h4 {
 	margin:0; padding:0 5px 0.25em 10px;
@@ -162,8 +162,8 @@ li a#linkButton {display:none; visibility:hidden;}
 
 /* Explore highlights (mostly RN & Catalyst promos) */
 #browse div.explore {
-	border:1px solid #afb3ba;
-	color:#f8ffff; background-color:#f6f6f6;
+	border:1px solid #009BE3;
+	color:#f8ffff; background-color:#EEE;
 }
 #browse div.index {/*simple inheritance of another section style */
 	padding:0!important;
@@ -295,7 +295,7 @@ li a#linkButton {display:none; visibility:hidden;}
 #browse .promoBox a img {
 	border-width:			0px; 
 	border-style:			solid; 
-	border-color:			#afb3ba #afb3ba #F7F8FC #afb3ba;
+	border-color:			#009BE3 #009BE3 #F7F8FC #009BE3;
 	width:					320px; 
 	height:					60px; 
 	text-decoration:		none;
@@ -312,7 +312,7 @@ li a#linkButton {display:none; visibility:hidden;}
 	padding:				10px;
 	border-width:			0 1px 1px 1px; 
 	border-style:			solid; 
-	border-color:			#afb3ba;
+	border-color:			#009BE3;
 }
 
 /* -- This Month in Nature --*/
@@ -331,11 +331,11 @@ li a#linkButton {display:none; visibility:hidden;}
 #browse .thisMonthInNature .topHighlight div {
 	background:#677063; color:#fff; 
 	margin:0; padding:0 10px!important; 
-	width:298px; border:none!important;
+	width:398px; border:none!important;
 }
 #browse .thisMonthInNature .topHighlight img {
 	border:1px solid #000;
-	width:285px; height:190px;
+	width:385px; height:190px;
 }
 #browse .thisMonthInNature .topHighlight .highlightImgBox {padding:15px 5px 10px 15px!important;}
 #browse .thisMonthInNature h2 {
@@ -356,7 +356,7 @@ li a#linkButton {display:none; visibility:hidden;}
 
 /* Multimedia */
 #browse .righthand { 
-	border:					1px solid #afb3ba;
+	border:					1px solid #009BE3;
 	color:					#3A3C53; 
 	background-color:		#F7F8FC;
 }
@@ -431,7 +431,7 @@ li a#linkButton {display:none; visibility:hidden;}
 	margin:					0!important; 
 	padding-left:			10px!important; 
 	padding-right:			10px!important; 
-	width:					298px!important;
+	width:					398px!important;
 }
 #browse .righthand div.content {
 	background-color:		#e4e4e4!important;
@@ -483,7 +483,7 @@ li a#linkButton {display:none; visibility:hidden;}
 #browse .browseItemWrapper {position:relative;}
 #browse .browseItemWrapper div {margin:0; padding:0; border:none; background-color:transparent!important;}
 #browse .browseItemWrapper div.wrapper {
-	border:1px solid #afb3ba;
+	border:1px solid #009BE3;
 	color:#3A3C53; background-color:#F7F8FC;
 	padding:0 0 10px 0!important;
 }
@@ -519,7 +519,7 @@ li a#linkButton {display:none; visibility:hidden;}
 }
 #browse .healthWellbeing .variantA, 
 #browse .healthWellbeing .variantB {
-	background-color:#f6f6f6; border:1px solid #afb3ba; position:relative;
+	background-color:#EEE; border:1px solid #009BE3; position:relative;
 	padding-top:3px;
 }
 #browse .healthWellbeing .variantA div {
@@ -556,7 +556,7 @@ div.righthand {
 			}
 */				
 #browse div.accordion, #browse div.accordion div {margin:auto 0; padding:0; border:none;}
-#browse div.righthand	{	border: 1px solid #AFB3BA;}
+#browse div.righthand	{	border: 1px solid #009BE3;}
 #browse div.righthand h3 {
 	padding:10px 5px;
 	margin:0;
@@ -582,7 +582,7 @@ div.righthand {
 	font-weight:bold;
 	outline:none;
 }
-#browse div.accordion div.title 	{	border-bottom: 0px solid #cccfd7;}
+#browse div.accordion div.title 	{	border-bottom: 0px solid #009BE3;}
 #browse div.accordion div.title.selected	{	border: 0px none #fff; outline: 0 none;}	
 
 #browse div.accordion div.title p {
@@ -596,7 +596,7 @@ div.righthand {
 	font-weight:normal;
 	padding: 0.5em 0.5em 0 0.5em;
 	background-image:url(/img/browse.widget.inactive.png);
-	background-repeat: no-repeat; background-position: 295px 5px;
+	background-repeat: no-repeat; background-position: 395px 5px;
 }
 #browse div.accordion div.title.selected p.show { 
 background-image:url(/img/browse.widget.active.png);
